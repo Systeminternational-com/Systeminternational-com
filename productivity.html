@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Dash | FutureFix Toolkit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="menu-toggle">☰</div>
+    <nav class="sidebar">
+        <h2>Toolkit</h2>
+        <ul>
+            <li><a href="attendance.html">Attendance Manager</a></li>
+            <li><a href="focus.html">Focus Core</a></li>
+            <li><a href="productivity.html">Productivity Dash</a></li>
+            <li><a href="expense.html">Expense Tracker</a></li>
+            <li><a href="weather.html">Weather Sync</a></li>
+            <li><a href="habit.html">Habit Builder</a></li>
+            <li><a href="stress.html">Stress Analyzer</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <div class="header-content">
+                <h1>Productivity Dash</h1>
+                <p>Performance Insights by SystemInternational</p>
+            </div>
+        </header>
+
+        <section class="tool-section">
+            <div class="tool">
+                <h3>Weekly Productivity</h3>
+                <button onclick="updateProductivity()">Refresh Metrics</button>
+                <canvas id="productivityChart"></canvas>
+            </div>
+            <div class="metrics">
+                <h4>Peak Day</h4>
+                <p id="peakDay">Day: N/A</p>
+                <h4>Average Hours</h4>
+                <p id="avgHours">Hours: 0</p>
+            </div>
+            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
+            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
+        </section>
+
+        <footer>
+            <p>SystemInternational | FutureFix Toolkit</p>
+        </footer>
+    </main>
+
+    <script src="productivity.js"></script>
+</body>
+</html>
