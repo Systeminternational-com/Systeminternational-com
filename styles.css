@@ -6,7 +6,7 @@
 
 body {
     font-family: 'SF Pro Display', sans-serif;
-    background: linear-gradient(135deg, #1a1a4e 0%, #0d0d2b 100%);
+    background: #000000;
     color: #e5e5e5;
     overflow-x: hidden;
     line-height: 1.6;
@@ -14,15 +14,16 @@ body {
 
 .menu-toggle {
     display: none;
-    font-size: 2em;
-    padding: 15px;
+    font-size: 1.8em;
+    padding: 12px;
     position: fixed;
-    top: 10px;
-    left: 10px;
+    top: 15px;
+    left: 15px;
     z-index: 1001;
-    color: #d4af37; /* Royal Platinum */
-    background: rgba(0, 0, 0, 0.8);
-    border-radius: 50%;
+    color: #e5e5e5;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
     transition: transform 0.3s ease;
 }
 
@@ -36,12 +37,12 @@ body {
     left: -300px;
     width: 300px;
     height: 100%;
-    background: linear-gradient(135deg, #1c2526, #000000);
+    background: rgba(0, 0, 0, 0.9);
     padding: 40px 20px;
     transition: left 0.3s ease;
     z-index: 1000;
-    border-right: 2px solid #d4af37;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .sidebar.active {
@@ -49,10 +50,15 @@ body {
 }
 
 .sidebar h2 {
-    color: #d4af37;
+    color: #00ffcc;
     font-size: 2em;
     margin-bottom: 30px;
-    text-shadow: 0 0 10px #d4af37;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
 }
 
 .sidebar a {
@@ -63,12 +69,13 @@ body {
     background: rgba(255, 255, 255, 0.05);
     margin-bottom: 10px;
     transition: all 0.3s ease;
+    font-size: 1.1em;
 }
 
 .sidebar a:hover {
-    background: #d4af37;
-    color: #000;
-    transform: translateX(10px);
+    background: #00ffcc;
+    color: #000000;
+    transform: translateX(5px);
 }
 
 main {
@@ -78,18 +85,22 @@ main {
 header {
     padding: 80px 20px;
     text-align: center;
-    background: linear-gradient(45deg, #000000, #1c2526);
-    border-bottom: 3px solid #d4af37;
-    animation: pulseGlow 3s infinite alternate;
+    background: rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 h1 {
-    font-size: 4em;
-    text-transform: uppercase;
-    letter-spacing: 8px;
-    color: #d4af37;
-    text-shadow: 0 0 20px #d4af37, 0 0 40px #00ffcc;
-    animation: neonFlicker 4s infinite;
+    font-size: 3.5em;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: #e5e5e5;
+    text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+p {
+    font-size: 1.2em;
+    color: rgba(229, 229, 229, 0.8);
 }
 
 .intro-overlay {
@@ -101,8 +112,8 @@ h1 {
 .intro-image {
     width: 100%;
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.5);
-    filter: brightness(0.7);
+    filter: brightness(0.6);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
 }
 
 .intro-text {
@@ -113,21 +124,27 @@ h1 {
     text-align: center;
     background: rgba(0, 0, 0, 0.7);
     padding: 30px;
-    border-radius: 15px;
-    backdrop-filter: blur(8px);
-    border: 1px solid #d4af37;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .intro-text h2 {
     color: #00ffcc;
-    font-size: 2.8em;
+    font-size: 2.5em;
+    font-weight: 700;
 }
 
 .about {
     text-align: center;
     max-width: 800px;
     margin: 40px auto;
+}
+
+.about h3 {
     color: #e5e5e5;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 .tool-section {
@@ -137,86 +154,112 @@ h1 {
 }
 
 .tool {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(212, 175, 55, 0.05));
+    background: rgba(255, 255, 255, 0.05);
     padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
-    transition: transform 0.4s ease;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+    transition: transform 0.3s ease;
 }
 
 .tool:hover {
-    transform: translateY(-15px);
+    transform: translateY(-10px);
+}
+
+.tool h3 {
+    color: #00ffcc;
+    font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
 .tool input, .tool button {
     padding: 15px;
     margin: 10px 0;
     border: none;
-    border-radius: 30px;
+    border-radius: 12px;
     background: rgba(255, 255, 255, 0.1);
     color: #e5e5e5;
     width: 100%;
     font-size: 1.1em;
     transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
 .tool button {
-    background: linear-gradient(45deg, #d4af37, #00ffcc);
-    cursor: pointer;
+    background: #00ffcc;
+    color: #000000;
+    font-weight: 700;
 }
 
 .tool button:hover {
+    background: #00e6b8;
     transform: scale(1.05);
-    box-shadow: 0 0 20px #d4af37;
 }
 
 canvas {
     margin: 20px 0;
     max-width: 100%;
     background: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .metrics {
     margin-top: 30px;
     padding: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
     color: #e5e5e5;
+}
+
+.metrics h4 {
+    color: #00ffcc;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }
 
 .ad-box {
     max-width: 400px;
     margin: 40px auto;
     padding: 20px;
-    background: linear-gradient(45deg, #d4af37, #00ffcc);
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(212, 175, 55, 0.6);
-    animation: adPulse 2s infinite;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.ad-box:hover {
+    transform: scale(1.02);
+}
+
+.ad-content {
+    text-align: center;
+    color: #e5e5e5;
 }
 
 #sponsor-tools {
     padding: 60px 20px;
     text-align: center;
-    background: linear-gradient(135deg, #1c2526, #000000);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 .limited-offer {
     display: inline-block;
-    background: #d4af37;
-    color: #000;
+    background: #00ffcc;
+    color: #000000;
     padding: 12px 25px;
-    border-radius: 30px;
-    font-size: 1.3em;
+    border-radius: 25px;
+    font-size: 1.2em;
+    font-weight: 700;
     margin-bottom: 30px;
-    animation: offerBlink 1.5s infinite;
-    box-shadow: 0 0 20px #d4af37;
+    animation: offerPulse 1.5s infinite;
 }
 
 .sponsor-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    gap: 30px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -224,31 +267,43 @@ canvas {
 .sponsor-card {
     background: rgba(255, 255, 255, 0.05);
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
     transition: transform 0.3s ease;
-    border: 1px solid #d4af37;
 }
 
 .sponsor-card:hover {
     transform: scale(1.05);
 }
 
+.sponsor-card h3 {
+    color: #00ffcc;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
 .sponsor-card a {
     display: inline-block;
     padding: 12px 25px;
-    background: linear-gradient(45deg, #d4af37, #00ffcc);
-    color: #000;
-    border-radius: 25px;
+    background: #00ffcc;
+    color: #000000;
+    border-radius: 12px;
+    font-weight: 700;
     margin-top: 15px;
+    transition: background 0.3s ease;
+}
+
+.sponsor-card a:hover {
+    background: #00e6b8;
 }
 
 footer {
     text-align: center;
     padding: 40px;
-    background: #000000;
-    border-top: 3px solid #d4af37;
-    color: #e5e5e5;
+    background: rgba(0, 0, 0, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(229, 229, 229, 0.8);
 }
 
 /* Mobile Responsiveness */
@@ -257,15 +312,23 @@ footer {
         display: block;
     }
     .intro-text h2 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     h1 {
         font-size: 2.5em;
     }
+    .sidebar {
+        width: 250px;
+    }
 }
 
 /* Animations */
-@keyframes pulseGlow { 0% { box-shadow: 0 0 20px #d4af37; } 100% { box-shadow: 0 0 60px #00ffcc; } }
-@keyframes neonFlicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.9; } }
-@keyframes adPulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-@keyframes offerBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes offerPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    }
