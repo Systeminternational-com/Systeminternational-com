@@ -1,93 +1,156 @@
-body {
+* {
     margin: 0;
-    font-family: 'Arial', sans-serif;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', sans-serif;
     background: linear-gradient(135deg, #0d0d2b 0%, #1a1a4e 100%);
     color: #fff;
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
 header {
+    position: relative;
     text-align: center;
-    padding: 50px;
-    background: rgba(0, 0, 0, 0.5);
-    border-bottom: 2px solid #00ffcc;
-    animation: glow 2s infinite alternate;
+    padding: 80px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-bottom: 3px solid #00ffcc;
+    animation: pulseGlow 3s infinite alternate;
+}
+
+.header-content {
+    position: relative;
+    z-index: 1;
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 4em;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 8px;
     color: #00ffcc;
-    text-shadow: 0 0 10px #00ffcc;
+    text-shadow: 0 0 20px #00ffcc, 0 0 40px #ff00ff;
+    animation: neonFlicker 4s infinite;
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 2.5em;
     color: #ff00ff;
-    text-shadow: 0 0 5px #ff00ff;
+    text-shadow: 0 0 10px #ff00ff;
+    margin-bottom: 30px;
 }
 
 section {
-    padding: 40px;
-    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .tool {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 500px;
-    border-radius: 10px;
-    transition: transform 0.3s;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .tool:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px);
+    box-shadow: 0 0 50px rgba(0, 255, 204, 0.5);
+}
+
+.tool h3 {
+    color: #00ffcc;
+    font-size: 1.5em;
+    margin-bottom: 15px;
 }
 
 .tool input, .tool button {
-    padding: 10px;
-    margin: 10px;
+    padding: 12px;
+    margin: 10px 0;
     border: none;
-    border-radius: 5px;
-    background: #1a1a4e;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
     color: #fff;
-    box-shadow: 0 0 10px #00ffcc;
+    font-size: 1em;
+    transition: all 0.3s ease;
 }
 
-.tool button:hover {
-    background: #00ffcc;
-    color: #0d0d2b;
+.tool input {
+    width: 100%;
+    box-shadow: inset 0 0 10px rgba(0, 255, 204, 0.3);
+}
+
+.tool button {
+    background: linear-gradient(45deg, #00ffcc, #ff00ff);
     cursor: pointer;
 }
 
+.tool button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #00ffcc;
+}
+
 .ad-box {
-    background: #ff00ff;
+    position: relative;
+    max-width: 400px;
+    margin: 30px auto;
     padding: 20px;
-    margin: 20px auto;
-    max-width: 300px;
-    border-radius: 10px;
-    box-shadow: 0 0 15px #ff00ff;
+    background: linear-gradient(45deg, #ff00ff, #00ffcc);
+    border-radius: 20px;
+    box-shadow: 0 0 40px rgba(255, 0, 255, 0.6);
+    animation: adPulse 2s infinite;
+}
+
+.ad-content {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 15px;
+    border-radius: 15px;
+    color: #fff;
 }
 
 footer {
     text-align: center;
-    padding: 20px;
-    background: rgba(0, 0, 0, 0.7);
-    border-top: 2px solid #ff00ff;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 3px solid #ff00ff;
+    font-size: 0.9em;
 }
 
 a {
     color: #00ffcc;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 a:hover {
-    text-shadow: 0 0 10px #00ffcc;
+    text-shadow: 0 0 15px #00ffcc;
+    color: #ff00ff;
 }
 
-@keyframes glow {
+/* Animations */
+@keyframes pulseGlow {
     0% { box-shadow: 0 0 20px #00ffcc; }
-    100% { box-shadow: 0 0 40px #ff00ff; }
+    100% { box-shadow: 0 0 60px #ff00ff; }
+}
+
+@keyframes neonFlicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+}
+
+@keyframes adPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
