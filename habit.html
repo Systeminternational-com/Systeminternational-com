@@ -17,9 +17,9 @@
             <li><a href="focus.html">Focus Core</a></li>
             <li><a href="productivity.html">Productivity Dash</a></li>
             <li><a href="expense.html">Expense Tracker</a></li>
-            <li><a href="weather.html">Weather Sync</a></li>
             <li><a href="habit.html">Habit Builder</a></li>
-            <li><a href="stress.html">Stress Analyzer</a></li>
+            <li><a href="mindos.html">Mindos</a></li>
+            <li><a href="reality.html">Reality Check</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
@@ -28,21 +28,20 @@
         <header>
             <div class="header-content">
                 <h1>Habit Builder</h1>
-                <p>Consistency Tracker by SystemInternational</p>
+                <p>Daily Challenges by SystemInternational</p>
             </div>
         </header>
 
         <section class="tool-section">
             <div class="tool">
-                <h3>Daily Habits</h3>
-                <input type="text" id="habitInput" placeholder="Enter Habit">
-                <button onclick="addHabit()">Add Habit</button>
+                <h3>Your Daily Habits</h3>
+                <button onclick="generateHabits()">New Habits</button>
                 <div id="habitList"></div>
                 <canvas id="habitChart"></canvas>
             </div>
             <div class="metrics">
-                <h4>Streak Score</h4>
-                <p id="streakScore">Score: 0</p>
+                <h4>Completion Rate</h4>
+                <p id="completionRate">Rate: 0%</p>
             </div>
             <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
             <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
