@@ -7,7 +7,7 @@ const stressChart = new Chart(document.getElementById('stressChart'), {
     type: 'pie',
     data: {
         labels: [],
-        datasets: [{ data: [], backgroundColor: ['#d4af37', '#00ffcc', '#ff00ff', '#1c2526'] }]
+        datasets: [{ data: [], backgroundColor: ['#00ffcc', '#e5e5e5', '#00e6b8', '#000000'] }]
     }
 });
 
