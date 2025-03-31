@@ -7,7 +7,7 @@ const expenseChart = new Chart(document.getElementById('expenseChart'), {
     type: 'bar',
     data: {
         labels: [],
-        datasets: [{ label: 'Expenses ($)', data: [], backgroundColor: '#d4af37' }]
+        datasets: [{ label: 'Expenses ($)', data: [], backgroundColor: '#00ffcc' }]
     },
     options: { scales: { y: { beginAtZero: true } } }
 });
