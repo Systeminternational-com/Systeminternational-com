@@ -17,9 +17,9 @@
             <li><a href="focus.html">Focus Core</a></li>
             <li><a href="productivity.html">Productivity Dash</a></li>
             <li><a href="expense.html">Expense Tracker</a></li>
-            <li><a href="weather.html">Weather Sync</a></li>
             <li><a href="habit.html">Habit Builder</a></li>
-            <li><a href="stress.html">Stress Analyzer</a></li>
+            <li><a href="mindos.html">Mindos</a></li>
+            <li><a href="reality.html">Reality Check</a></li>
             <li><a href="index.html">Home</a></li>
         </ul>
     </nav>
@@ -28,21 +28,23 @@
         <header>
             <div class="header-content">
                 <h1>Productivity Dash</h1>
-                <p>Performance Insights by SystemInternational</p>
+                <p>Smart Planning by SystemInternational</p>
             </div>
         </header>
 
         <section class="tool-section">
             <div class="tool">
-                <h3>Weekly Productivity</h3>
-                <button onclick="updateProductivity()">Refresh Metrics</button>
+                <h3>Plan Your Day</h3>
+                <input type="number" id="hoursInput" placeholder="Hours Available (1-24)">
+                <input type="number" id="tasksInput" placeholder="Number of Tasks (1-10)">
+                <input type="text" id="priorityInput" placeholder="Priority Task">
+                <button onclick="generatePlan()">Create Plan</button>
+                <div id="planOutput"></div>
                 <canvas id="productivityChart"></canvas>
             </div>
             <div class="metrics">
-                <h4>Peak Day</h4>
-                <p id="peakDay">Day: N/A</p>
-                <h4>Average Hours</h4>
-                <p id="avgHours">Hours: 0</p>
+                <h4>Task Efficiency</h4>
+                <p id="taskEfficiency">Efficiency: N/A</p>
             </div>
             <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
             <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
