@@ -7,7 +7,7 @@ const productivityChart = new Chart(document.getElementById('productivityChart')
     type: 'line',
     data: {
         labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        datasets: [{ label: 'Focus Hours', data: productivityData, borderColor: '#d4af37', fill: false }]
+        datasets: [{ label: 'Focus Hours', data: productivityData, borderColor: '#00ffcc', fill: false }]
     },
     options: { scales: { y: { beginAtZero: true } } }
 });
