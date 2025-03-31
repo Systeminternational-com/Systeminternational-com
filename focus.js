@@ -7,7 +7,7 @@ const focusChart = new Chart(document.getElementById('focusChart'), {
     type: 'doughnut',
     data: {
         labels: ['Remaining', 'Elapsed'],
-        datasets: [{ data: [1500, 0], backgroundColor: ['#d4af37', '#00ffcc'] }]
+        datasets: [{ data: [1500, 0], backgroundColor: ['#e5e5e5', '#00ffcc'] }]
     }
 });
 
