@@ -10,6 +10,7 @@ body {
     color: #e5e5e5;
     overflow-x: hidden;
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
 }
 
 .menu-toggle {
@@ -21,14 +22,15 @@ body {
     left: 15px;
     z-index: 1001;
     color: #e5e5e5;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(12px);
+    transition: transform 0.2s ease, background 0.2s ease;
 }
 
 .menu-toggle:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .sidebar {
@@ -37,12 +39,12 @@ body {
     left: -300px;
     width: 300px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.95);
     padding: 40px 20px;
-    transition: left 0.3s ease;
+    transition: left 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     z-index: 1000;
-    backdrop-filter: blur(15px);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .sidebar.active {
@@ -68,7 +70,7 @@ body {
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.05);
     margin-bottom: 10px;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     font-size: 1.1em;
 }
 
@@ -85,8 +87,8 @@ main {
 header {
     padding: 80px 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 h1 {
@@ -94,7 +96,7 @@ h1 {
     font-weight: 700;
     letter-spacing: 4px;
     color: #e5e5e5;
-    text-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+    text-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
     animation: fadeIn 1s ease-in-out;
 }
 
@@ -113,7 +115,7 @@ p {
     width: 100%;
     border-radius: 20px;
     filter: brightness(0.6);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
 }
 
 .intro-text {
@@ -122,10 +124,10 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.75);
     padding: 30px;
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
@@ -157,13 +159,13 @@ p {
     background: rgba(255, 255, 255, 0.05);
     padding: 40px;
     border-radius: 20px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.15);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .tool:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
 }
 
 .tool h3 {
@@ -177,12 +179,12 @@ p {
     margin: 10px 0;
     border: none;
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     color: #e5e5e5;
     width: 100%;
     font-size: 1.1em;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
 }
 
 .tool button {
@@ -193,14 +195,15 @@ p {
 
 .tool button:hover {
     background: #00e6b8;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 canvas {
     margin: 20px 0;
     max-width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
 }
 
 .metrics {
@@ -208,7 +211,7 @@ canvas {
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     color: #e5e5e5;
 }
 
@@ -222,11 +225,11 @@ canvas {
     max-width: 400px;
     margin: 40px auto;
     padding: 20px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .ad-box:hover {
@@ -241,7 +244,7 @@ canvas {
 #sponsor-tools {
     padding: 60px 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .limited-offer {
@@ -268,13 +271,13 @@ canvas {
     background: rgba(255, 255, 255, 0.05);
     padding: 30px;
     border-radius: 12px;
-    backdrop-filter: blur(15px);
-    box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
-    transition: transform 0.3s ease;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 20px rgba(0, 255, 204, 0.15);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .sponsor-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .sponsor-card h3 {
@@ -291,7 +294,7 @@ canvas {
     border-radius: 12px;
     font-weight: 700;
     margin-top: 15px;
-    transition: background 0.3s ease;
+    transition: background 0.2s ease;
 }
 
 .sponsor-card a:hover {
@@ -301,8 +304,8 @@ canvas {
 footer {
     text-align: center;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.9);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.95);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
     color: rgba(229, 229, 229, 0.8);
 }
 
@@ -330,5 +333,5 @@ footer {
 
 @keyframes offerPulse {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    50% { transform: scale(1.03); }
     }
