@@ -6,21 +6,19 @@
     <title>FutureFix Toolkit | SystemInternational</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
         <ul>
-            <li><a href="#task-nexus">Task Nexus</a></li>
-            <li><a href="#focus-core">Focus Core</a></li>
-            <li><a href="#goal-matrix">Goal Matrix</a></li>
-            <li><a href="#mood-scanner">Mood Scanner</a></li>
-            <li><a href="#productivity-dash">Productivity Dash</a></li>
-            <li><a href="#expense-tracker">Expense Tracker</a></li>
-            <li><a href="#weather-sync">Weather Sync</a></li>
-            <li><a href="#attendance-calc">Attendance Calc</a></li>
+            <li><a href="attendance.html">Attendance Manager</a></li>
+            <li><a href="focus.html">Focus Core</a></li>
+            <li><a href="productivity.html">Productivity Dash</a></li>
+            <li><a href="expense.html">Expense Tracker</a></li>
+            <li><a href="weather.html">Weather Sync</a></li>
+            <li><a href="habit.html">Habit Builder</a></li>
+            <li><a href="stress.html">Stress Analyzer</a></li>
         </ul>
     </nav>
 
@@ -36,111 +34,32 @@
             <div class="intro-overlay">
                 <img src="hero1.jpg" alt="Futuristic Scene" class="intro-image">
                 <div class="intro-text">
-                    <h2>Unleash Infinite Potential</h2>
-                    <p>SystemInternational presents a revolutionary ecosystem designed to transcend boundaries of time and efficiency. Empower your future with cutting-edge tools.</p>
+                    <h2>Transcend the Ordinary</h2>
+                    <p>SystemInternational delivers a platinum-grade ecosystem to elevate your existence. Precision tools for a limitless future.</p>
                 </div>
             </div>
             <div class="about">
                 <h3>About Us</h3>
-                <p>At SystemInternational, we redefine productivity with innovation that feels light-years ahead. Join us in shaping a seamless, limitless tomorrow.</p>
+                <p>Crafted with royal precision, FutureFix Toolkit by SystemInternational fuses innovation and elegance. Step into tomorrow, today.</p>
             </div>
-        </section>
-
-        <!-- Tools in Separate Sections -->
-        <section id="task-nexus" class="tool-section">
-            <div class="tool">
-                <h3>Task Nexus</h3>
-                <input type="text" id="taskInput" placeholder="Input Task Directive">
-                <button onclick="optimizeTask()">Engage</button>
-                <p id="taskOutput">Optimized output awaits.</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="focus-core" class="tool-section">
-            <div class="tool">
-                <h3>Focus Core</h3>
-                <button onclick="startTimer()">Initiate 25-Min Cycle</button>
-                <p id="timerOutput">Cycle: 25:00</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="goal-matrix" class="tool-section">
-            <div class="tool">
-                <h3>Goal Matrix</h3>
-                <input type="text" id="goalInput" placeholder="Define Objective">
-                <button onclick="trackGoal()">Sync</button>
-                <p id="goalOutput">Objective status pending.</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="mood-scanner" class="tool-section">
-            <div class="tool">
-                <h3>Mood Scanner</h3>
-                <button onclick="scanMood()">Analyze</button>
-                <p id="moodOutput">Emotional state unknown.</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="productivity-dash" class="tool-section">
-            <div class="tool">
-                <h3>Productivity Dashboard</h3>
-                <canvas id="productivityChart"></canvas>
-                <button onclick="updateProductivity()">Refresh Metrics</button>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="expense-tracker" class="tool-section">
-            <div class="tool">
-                <h3>Expense Tracker</h3>
-                <input type="number" id="expenseInput" placeholder="Enter Amount">
-                <button onclick="addExpense()">Log</button>
-                <p id="expenseTotal">Total: $0</p>
-                <canvas id="expenseChart"></canvas>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="weather-sync" class="tool-section">
-            <div class="tool">
-                <h3>Weather Sync</h3>
-                <input type="text" id="cityInput" placeholder="Enter City">
-                <button onclick="fetchWeather()">Sync</button>
-                <p id="weatherOutput">Weather data pending.</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
-        </section>
-
-        <section id="attendance-calc" class="tool-section">
-            <div class="tool">
-                <h3>Attendance Calculator</h3>
-                <input type="number" id="attendedDays" placeholder="Days Attended">
-                <input type="number" id="totalDays" placeholder="Total Days">
-                <button onclick="calcAttendance()">Calculate</button>
-                <p id="attendanceOutput">Attendance: 0%</p>
-            </div>
-            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
         </section>
 
         <section id="sponsor-tools">
-            <div class="limited-offer">Limited Time Free Offer</div>
+            <div class="limited-offer">Limited Time Free Access</div>
             <h2>Hyper Sponsors & Tools</h2>
             <div class="sponsor-grid">
                 <div class="sponsor-card">
                     <h3>Sponsor Ads</h3>
-                    <p>Partner with us for exclusive visibility.</p>
+                    <p>Elevate your brand with us.</p>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJFkSEuFS_MksUcC9-z8_wN1RnCVo2CeNCuPiY2H-Lv1l0pg/viewform?usp=dialog" target="_blank">Apply Now</a>
                 </div>
                 <div class="sponsor-card">
                     <h3>On-Demand Tools</h3>
-                    <p>Request custom tools for your needs.</p>
+                    <p>Request bespoke solutions.</p>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLScWhxw2k_9DQwqtbRDyURlOpF2uAzDOiA0pmqtmNDduqLAZjQ/viewform?usp=dialog" target="_blank">Submit Request</a>
                 </div>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
         </section>
 
         <footer>
