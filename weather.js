@@ -7,7 +7,7 @@ const weatherChart = new Chart(document.getElementById('weatherChart'), {
     type: 'line',
     data: {
         labels: [],
-        datasets: [{ label: 'Temperature (°C)', data: [], borderColor: '#d4af37', fill: false }]
+        datasets: [{ label: 'Temperature (°C)', data: [], borderColor: '#00ffcc', fill: false }]
     },
     options: { scales: { y: { beginAtZero: false } } }
 });
