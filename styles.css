@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0d0d2b 0%, #1a1a4e 100%);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    border-bottom: 2px solid #00ffcc;
+    animation: glow 2s infinite alternate;
+}
+
+h1 {
+    font-size: 3em;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    color: #00ffcc;
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+h2 {
+    font-size: 2em;
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+section {
+    padding: 40px;
+    text-align: center;
+}
+
+.tool {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.tool:hover {
+    transform: scale(1.05);
+}
+
+.tool input, .tool button {
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #1a1a4e;
+    color: #fff;
+    box-shadow: 0 0 10px #00ffcc;
+}
+
+.tool button:hover {
+    background: #00ffcc;
+    color: #0d0d2b;
+    cursor: pointer;
+}
+
+.ad-box {
+    background: #ff00ff;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 2px solid #ff00ff;
+}
+
+a {
+    color: #00ffcc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-shadow: 0 0 10px #00ffcc;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 20px #00ffcc; }
+    100% { box-shadow: 0 0 40px #ff00ff; }
+}
