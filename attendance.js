@@ -7,7 +7,7 @@ const attendanceChart = new Chart(document.getElementById('attendanceChart'), {
     type: 'bar',
     data: {
         labels: [],
-        datasets: [{ label: 'Attendance %', data: [], backgroundColor: '#d4af37' }]
+        datasets: [{ label: 'Attendance %', data: [], backgroundColor: '#00ffcc' }]
     },
     options: { scales: { y: { beginAtZero: true, max: 100 } } }
 });
