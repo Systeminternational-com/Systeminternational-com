@@ -20,6 +20,7 @@
             <li><a href="#productivity-dash">Productivity Dash</a></li>
             <li><a href="#expense-tracker">Expense Tracker</a></li>
             <li><a href="#weather-sync">Weather Sync</a></li>
+            <li><a href="#attendance-calc">Attendance Calc</a></li>
         </ul>
     </nav>
 
@@ -29,68 +30,116 @@
                 <h1>FutureFix Toolkit</h1>
                 <p>Engineered by SystemInternational</p>
             </div>
-            <div class="intro">
-                <p>Welcome to the ultimate efficiency ecosystem, crafted by SystemInternational to transcend time and space. Unleash your potential with tools designed for the infinite future.</p>
-                <div class="image-grid">
-                    <img src="hero1.jpg" alt="Futuristic Scene 1">
-                    <img src="hero2.jpg" alt="Futuristic Scene 2">
-                </div>
-            </div>
         </header>
 
-        <section id="tools" class="tool-section">
-            <div id="task-nexus" class="tool">
+        <section id="intro">
+            <div class="intro-overlay">
+                <img src="hero1.jpg" alt="Futuristic Scene" class="intro-image">
+                <div class="intro-text">
+                    <h2>Unleash Infinite Potential</h2>
+                    <p>SystemInternational presents a revolutionary ecosystem designed to transcend boundaries of time and efficiency. Empower your future with cutting-edge tools.</p>
+                </div>
+            </div>
+            <div class="about">
+                <h3>About Us</h3>
+                <p>At SystemInternational, we redefine productivity with innovation that feels light-years ahead. Join us in shaping a seamless, limitless tomorrow.</p>
+            </div>
+        </section>
+
+        <!-- Tools in Separate Sections -->
+        <section id="task-nexus" class="tool-section">
+            <div class="tool">
                 <h3>Task Nexus</h3>
                 <input type="text" id="taskInput" placeholder="Input Task Directive">
                 <button onclick="optimizeTask()">Engage</button>
                 <p id="taskOutput">Optimized output awaits.</p>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="focus-core" class="tool">
+        <section id="focus-core" class="tool-section">
+            <div class="tool">
                 <h3>Focus Core</h3>
                 <button onclick="startTimer()">Initiate 25-Min Cycle</button>
                 <p id="timerOutput">Cycle: 25:00</p>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="goal-matrix" class="tool">
+        <section id="goal-matrix" class="tool-section">
+            <div class="tool">
                 <h3>Goal Matrix</h3>
                 <input type="text" id="goalInput" placeholder="Define Objective">
                 <button onclick="trackGoal()">Sync</button>
                 <p id="goalOutput">Objective status pending.</p>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="mood-scanner" class="tool">
+        <section id="mood-scanner" class="tool-section">
+            <div class="tool">
                 <h3>Mood Scanner</h3>
                 <button onclick="scanMood()">Analyze</button>
                 <p id="moodOutput">Emotional state unknown.</p>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="productivity-dash" class="tool">
+        <section id="productivity-dash" class="tool-section">
+            <div class="tool">
                 <h3>Productivity Dashboard</h3>
                 <canvas id="productivityChart"></canvas>
                 <button onclick="updateProductivity()">Refresh Metrics</button>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="expense-tracker" class="tool">
+        <section id="expense-tracker" class="tool-section">
+            <div class="tool">
                 <h3>Expense Tracker</h3>
                 <input type="number" id="expenseInput" placeholder="Enter Amount">
                 <button onclick="addExpense()">Log</button>
                 <p id="expenseTotal">Total: $0</p>
                 <canvas id="expenseChart"></canvas>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
 
-            <div id="weather-sync" class="tool">
+        <section id="weather-sync" class="tool-section">
+            <div class="tool">
                 <h3>Weather Sync</h3>
                 <input type="text" id="cityInput" placeholder="Enter City">
                 <button onclick="fetchWeather()">Sync</button>
                 <p id="weatherOutput">Weather data pending.</p>
             </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
         </section>
 
-        <section id="ads">
-            <h2>Hyper Sponsors</h2>
-            <div class="ad-box">
-                <div class="ad-content">Ad Interface: Inject Adsense Code Here</div>
+        <section id="attendance-calc" class="tool-section">
+            <div class="tool">
+                <h3>Attendance Calculator</h3>
+                <input type="number" id="attendedDays" placeholder="Days Attended">
+                <input type="number" id="totalDays" placeholder="Total Days">
+                <button onclick="calcAttendance()">Calculate</button>
+                <p id="attendanceOutput">Attendance: 0%</p>
+            </div>
+            <div class="ad-box"><div class="ad-content">Ad Space</div></div>
+        </section>
+
+        <section id="sponsor-tools">
+            <div class="limited-offer">Limited Time Free Offer</div>
+            <h2>Hyper Sponsors & Tools</h2>
+            <div class="sponsor-grid">
+                <div class="sponsor-card">
+                    <h3>Sponsor Ads</h3>
+                    <p>Partner with us for exclusive visibility.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfJFkSEuFS_MksUcC9-z8_wN1RnCVo2CeNCuPiY2H-Lv1l0pg/viewform?usp=dialog" target="_blank">Apply Now</a>
+                </div>
+                <div class="sponsor-card">
+                    <h3>On-Demand Tools</h3>
+                    <p>Request custom tools for your needs.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScWhxw2k_9DQwqtbRDyURlOpF2uAzDOiA0pmqtmNDduqLAZjQ/viewform?usp=dialog" target="_blank">Submit Request</a>
+                </div>
             </div>
         </section>
 
