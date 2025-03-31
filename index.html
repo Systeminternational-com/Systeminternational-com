@@ -3,62 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FutureFix Toolkit</title>
+    <title>FutureFix Toolkit | SystemInternational</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <h1>FutureFix Toolkit</h1>
-            <p>Elevate Your Existence</p>
-        </div>
-    </header>
+    <div class="menu-toggle">☰</div>
+    <nav class="sidebar">
+        <h2>Toolkit</h2>
+        <ul>
+            <li><a href="#task-nexus">Task Nexus</a></li>
+            <li><a href="#focus-core">Focus Core</a></li>
+            <li><a href="#goal-matrix">Goal Matrix</a></li>
+            <li><a href="#mood-scanner">Mood Scanner</a></li>
+            <li><a href="#productivity-dash">Productivity Dash</a></li>
+            <li><a href="#expense-tracker">Expense Tracker</a></li>
+            <li><a href="#weather-sync">Weather Sync</a></li>
+        </ul>
+    </nav>
 
-    <section id="tools">
-        <h2>Quantum Tools</h2>
-        <div class="tool-grid">
-            <div class="tool">
+    <main>
+        <header>
+            <div class="header-content">
+                <h1>FutureFix Toolkit</h1>
+                <p>Engineered by SystemInternational</p>
+            </div>
+            <div class="intro">
+                <p>Welcome to the ultimate efficiency ecosystem, crafted by SystemInternational to transcend time and space. Unleash your potential with tools designed for the infinite future.</p>
+                <div class="image-grid">
+                    <img src="hero1.jpg" alt="Futuristic Scene 1">
+                    <img src="hero2.jpg" alt="Futuristic Scene 2">
+                </div>
+            </div>
+        </header>
+
+        <section id="tools" class="tool-section">
+            <div id="task-nexus" class="tool">
                 <h3>Task Nexus</h3>
                 <input type="text" id="taskInput" placeholder="Input Task Directive">
                 <button onclick="optimizeTask()">Engage</button>
                 <p id="taskOutput">Optimized output awaits.</p>
             </div>
-            <div class="tool">
+
+            <div id="focus-core" class="tool">
                 <h3>Focus Core</h3>
                 <button onclick="startTimer()">Initiate 25-Min Cycle</button>
                 <p id="timerOutput">Cycle: 25:00</p>
             </div>
-            <div class="tool">
+
+            <div id="goal-matrix" class="tool">
                 <h3>Goal Matrix</h3>
                 <input type="text" id="goalInput" placeholder="Define Objective">
                 <button onclick="trackGoal()">Sync</button>
                 <p id="goalOutput">Objective status pending.</p>
             </div>
-            <div class="tool">
+
+            <div id="mood-scanner" class="tool">
                 <h3>Mood Scanner</h3>
                 <button onclick="scanMood()">Analyze</button>
                 <p id="moodOutput">Emotional state unknown.</p>
             </div>
-        </div>
-    </section>
 
-    <section id="resources">
-        <h2>Neural Enhancements</h2>
-        <p>Amplify your potential with <a href="https://example.com/affiliate-link" target="_blank">this system</a>.</p>
-        <p>More integrations on the horizon.</p>
-    </section>
+            <div id="productivity-dash" class="tool">
+                <h3>Productivity Dashboard</h3>
+                <canvas id="productivityChart"></canvas>
+                <button onclick="updateProductivity()">Refresh Metrics</button>
+            </div>
 
-    <section id="ads">
-        <h2>Hyper Sponsors</h2>
-        <div class="ad-box">
-            <div class="ad-content">Ad Interface: Inject Adsense Code Here</div>
-        </div>
-    </section>
+            <div id="expense-tracker" class="tool">
+                <h3>Expense Tracker</h3>
+                <input type="number" id="expenseInput" placeholder="Enter Amount">
+                <button onclick="addExpense()">Log</button>
+                <p id="expenseTotal">Total: $0</p>
+                <canvas id="expenseChart"></canvas>
+            </div>
 
-    <footer>
-        <p>FutureFix Toolkit | Engineered for Eternity</p>
-    </footer>
+            <div id="weather-sync" class="tool">
+                <h3>Weather Sync</h3>
+                <input type="text" id="cityInput" placeholder="Enter City">
+                <button onclick="fetchWeather()">Sync</button>
+                <p id="weatherOutput">Weather data pending.</p>
+            </div>
+        </section>
+
+        <section id="ads">
+            <h2>Hyper Sponsors</h2>
+            <div class="ad-box">
+                <div class="ad-content">Ad Interface: Inject Adsense Code Here</div>
+            </div>
+        </section>
+
+        <footer>
+            <p>SystemInternational | FutureFix Toolkit</p>
+        </footer>
+    </main>
 
     <script src="script.js"></script>
 </body>
