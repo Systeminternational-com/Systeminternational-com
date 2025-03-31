@@ -83,10 +83,10 @@ function addExpense() {
     }
 }
 
-// Weather Sync (Using OpenWeather API - Replace API_KEY)
+// Weather Sync
 function fetchWeather() {
     const city = document.getElementById('cityInput').value;
-    const apiKey = 'YOUR_OPENWEATHER_API_KEY'; // Get free key at openweathermap.org
+    const apiKey = 'YOUR_OPENWEATHER_API_KEY'; // Replace with your key
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
         .then(response => response.json())
         .then(data => {
@@ -96,3 +96,16 @@ function fetchWeather() {
             document.getElementById('weatherOutput').textContent = "City not found.";
         });
 }
+
+// Attendance Calculator
+function calcAttendance() {
+    const attended = parseInt(document.getElementById('attendedDays').value) || 0;
+    const total = parseInt(document.getElementById('totalDays').value) || 0;
+    const output = document.getElementById('attendanceOutput');
+    if (total > 0) {
+        const percentage = (attended / total) * 100;
+        output.textContent = `Attendance: ${percentage.toFixed(2)}%`;
+    } else {
+        output.textContent = "Enter valid total days.";
+    }
+            }
