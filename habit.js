@@ -7,7 +7,7 @@ const habitChart = new Chart(document.getElementById('habitChart'), {
     type: 'bar',
     data: {
         labels: [],
-        datasets: [{ label: 'Days Completed', data: [], backgroundColor: '#d4af37' }]
+        datasets: [{ label: 'Days Completed', data: [], backgroundColor: '#00ffcc' }]
     },
     options: { scales: { y: { beginAtZero: true } } }
 });
