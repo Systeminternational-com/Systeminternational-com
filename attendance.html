@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Manager | FutureFix Toolkit</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="menu-toggle">☰</div>
+    <nav class="sidebar">
+        <h2>Toolkit</h2>
+        <ul>
+            <li><a href="attendance.html">Attendance Manager</a></li>
+            <li><a href="focus.html">Focus Core</a></li>
+            <li><a href="productivity.html">Productivity Dash</a></li>
+            <li><a href="expense.html">Expense Tracker</a></li>
+            <li><a href="weather.html">Weather Sync</a></li>
+            <li><a href="habit.html">Habit Builder</a></li>
+            <li><a href="stress.html">Stress Analyzer</a></li>
+            <li><a href="index.html">Home</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <header>
+            <div class="header-content">
+                <h1>Attendance Manager</h1>
+                <p>Precision Tracking by SystemInternational</p>
+            </div>
+        </header>
+
+        <section class="tool-section">
+            <div class="tool">
+                <h3>Subject Attendance</h3>
+                <input type="text" id="subjectName" placeholder="Subject Name">
+                <input type="number" id="attendedDays" placeholder="Days Attended">
+                <input type="number" id="totalDays" placeholder="Total Days">
+                <button onclick="addSubject()">Add Subject</button>
+                <div id="subjectList"></div>
+                <button onclick="calcAttendance()">Calculate Total</button>
+                <p id="attendanceOutput">Total Attendance: 0%</p>
+                <canvas id="attendanceChart"></canvas>
+            </div>
+            <div class="metrics">
+                <h4>Performance Score</h4>
+                <p id="perfScore">Score: N/A</p>
+                <h4>Consistency Index</h4>
+                <p id="consistency">Index: N/A</p>
+            </div>
+            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
+            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
+        </section>
+
+        <footer>
+            <p>SystemInternational | FutureFix Toolkit</p>
+        </footer>
+    </main>
+
+    <script src="attendance.js"></script>
+</body>
+</html>
