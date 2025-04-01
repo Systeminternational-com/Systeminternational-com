@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="productivity-bg">
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
@@ -28,26 +28,37 @@
         <header>
             <div class="header-content">
                 <h1>Productivity Dash</h1>
-                <p>Smart Planning by SystemInternational</p>
+                <p>Plan Smarter</p>
             </div>
         </header>
 
         <section class="tool-section">
-            <div class="tool">
+            <div class="tool productivity-tool">
                 <h3>Plan Your Day</h3>
                 <input type="number" id="hoursInput" placeholder="Hours Available (1-24)">
                 <input type="number" id="tasksInput" placeholder="Number of Tasks (1-10)">
                 <input type="text" id="priorityInput" placeholder="Priority Task">
+                <select id="priorityLevel">
+                    <option value="1">Low Priority</option>
+                    <option value="2">Medium Priority</option>
+                    <option value="3">High Priority</option>
+                </select>
+                <select id="timePreference">
+                    <option value="morning">Morning (9 AM Start)</option>
+                    <option value="afternoon">Afternoon (1 PM Start)</option>
+                    <option value="evening">Evening (6 PM Start)</option>
+                </select>
                 <button onclick="generatePlan()">Create Plan</button>
+                <button onclick="clearPlan()">Clear Plan</button>
                 <div id="planOutput"></div>
                 <canvas id="productivityChart"></canvas>
             </div>
             <div class="metrics">
                 <h4>Task Efficiency</h4>
                 <p id="taskEfficiency">Efficiency: N/A</p>
+                <h4>Completion Rate</h4>
+                <p id="completionRate">Rate: 0%</p>
             </div>
-            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
-            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
         </section>
 
         <footer>
