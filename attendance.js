@@ -2,7 +2,6 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
     document.querySelector('.sidebar').classList.toggle('active');
 });
 
-// Data Persistence and Complex State Management
 class AttendanceManager {
     constructor() {
         this.subjects = JSON.parse(localStorage.getItem('attendanceData')) || [];
@@ -12,8 +11,8 @@ class AttendanceManager {
             data: {
                 labels: [],
                 datasets: [
-                    { label: 'Attendance %', data: [], borderColor: '#00ffcc', fill: false },
-                    { label: 'Trend', data: [], borderColor: '#e5e5e5', fill: false }
+                    { label: 'Attendance %', data: [], borderColor: '#00FFCC', fill: false },
+                    { label: 'Trend', data: [], borderColor: '#FFFFFF', fill: false }
                 ]
             },
             options: {
@@ -24,10 +23,13 @@ class AttendanceManager {
         this.loadData();
     }
 
-    addSubject(name, attended, total) {
-        if (!name || total <= 0 || attended < 0 || attended > total) return;
+    addSubject(name, attended, total, semester, instructor, goal) {
+        if (!name || total <= 0 || attended < 0 || attended > total || !instructor) {
+            alert('Invalid input. Please check your values.');
+            return;
+        }
         const percentage = (attended / total) * 100;
-        const subject = { name, attended, total, percentage, date: new Date().toISOString() };
+        const subject = { name, attended, total, percentage, semester, instructor, goal, date: new Date().toISOString() };
         this.subjects.push(subject);
         this.history.push({ ...subject, timestamp: Date.now() });
         this.saveData();
@@ -43,8 +45,15 @@ class AttendanceManager {
         this.updateUI();
     }
 
+    clearData() {
+        this.subjects = [];
+        this.history = [];
+        this.saveData();
+        this.updateUI();
+    }
+
     calcAttendance() {
-        if (!this.subjects.length) return { totalPercentage: 0, perfScore: 'N/A', consistency: 'N/A' };
+        if (!this.subjects.length) return { totalPercentage: 0, perfScore: 'N/A', consistency: 'N/A', goalProgress: 'N/A' };
         
         const totalAttended = this.subjects.reduce((sum, s) => sum + s.attended, 0);
         const totalDays = this.subjects.reduce((sum, s) => sum + s.total, 0);
@@ -53,8 +62,10 @@ class AttendanceManager {
         const avgAttendance = totalPercentage;
         const perfScore = avgAttendance > 85 ? 'A+' : avgAttendance > 75 ? 'A' : avgAttendance > 65 ? 'B' : 'C';
         const consistency = this.calculateConsistency();
+        const goal = this.subjects.length ? parseInt(this.subjects[0].goal) : 75;
+        const goalProgress = (avgAttendance / goal) * 100;
 
-        return { totalPercentage, perfScore, consistency };
+        return { totalPercentage, perfScore, consistency, goalProgress };
     }
 
     calculateConsistency() {
@@ -68,13 +79,14 @@ class AttendanceManager {
     updateUI() {
         const list = document.getElementById('subjectList');
         list.innerHTML = this.subjects.map(s => `
-            <p>${s.name}: ${s.attended}/${s.total} (${s.percentage.toFixed(2)}%) - ${new Date(s.date).toLocaleDateString()}</p>
+            <p>${s.name} (Sem ${s.semester}, ${s.instructor}): ${s.attended}/${s.total} (${s.percentage.toFixed(2)}%) - Goal: ${s.goal}%</p>
         `).join('');
 
-        const { totalPercentage, perfScore, consistency } = this.calcAttendance();
-        document.getElementById('attendanceOutput').textContent = `Total Attendance: ${totalPercentage.toFixed(2)}%`;
+        const { totalPercentage, perfScore, consistency, goalProgress } = this.calcAttendance();
+        document.getElementById('attendanceOutput').textContent = `${totalPercentage.toFixed(2)}%`;
         document.getElementById('perfScore').textContent = `Score: ${perfScore}`;
         document.getElementById('consistency').textContent = `Index: ${consistency.toFixed(2)}%`;
+        document.getElementById('goalProgress').textContent = `Progress: ${goalProgress.toFixed(2)}%`;
 
         this.updateChart();
     }
@@ -110,10 +122,16 @@ function addSubject() {
     const name = document.getElementById('subjectName').value;
     const attended = parseInt(document.getElementById('attendedDays').value) || 0;
     const total = parseInt(document.getElementById('totalDays').value) || 0;
-    manager.addSubject(name, attended, total);
+    const semester = document.getElementById('semesterSelect').value;
+    const instructor = document.getElementById('instructorName').value || "Unknown";
+    const goal = document.getElementById('attendanceGoal').value;
+    manager.addSubject(name, attended, total, semester, instructor, goal);
 }
 
-function calcAttendance() {
-    manager.updateUI();
-    // Optional: manager.exportReport(); // Uncomment to enable report export
-            }
+function exportReport() {
+    manager.exportReport();
+}
+
+function clearData() {
+    manager.clearData();
+    }
