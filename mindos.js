@@ -4,101 +4,76 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 
 class Mindos {
     constructor() {
-        this.scores = JSON.parse(localStorage.getItem('mindosScores')) || { math: 0, logic: 0, memory: 0, speed: 0 };
-        this.history = JSON.parse(localStorage.getItem('mindosHistory')) || [];
-        this.currentPuzzle = null;
-        this.startTime = null;
-        this.chart = new Chart(document.getElementById('mindosChart'), {
-            type: 'radar',
-            data: {
-                labels: ['Math', 'Logic', 'Memory', 'Speed'],
-                datasets: [{ label: 'Cognitive Skills', data: [0, 0, 0, 0], backgroundColor: 'rgba(0, 255, 204, 0.2)', borderColor: '#00ffcc' }]
-            },
-            options: { scales: { r: { beginAtZero: true, max: 100 } } }
-        });
-        this.puzzles = {
-            math: [
-                { question: 'Solve: (12 * 15 - 30) / 5', answer: '30' },
-                { question: 'What is 17% of 200?', answer: '34' }
-            ],
-            logic: [
-                { question: 'If all Zigs are Zags and some Zags are Zogs, are some Zigs Zogs?', answer: 'maybe' },
-                { question: 'A is taller than B, B is taller than C. Is A taller than C?', answer: 'yes' }
-            ],
-            memory: [
-                { question: 'Memorize: 4, 7, 2, 9, 1. What’s the sequence?', answer: '47291' },
-                { question: 'Memorize: red, blue, green. Second color?', answer: 'blue' }
-            ]
-        };
-        this.loadStats();
+        this.nodes = JSON.parse(localStorage.getItem('mindMap')) || [];
+        this.loadMindMap();
     }
 
-    generatePuzzle() {
-        const types = Object.keys(this.puzzles);
-        const type = types[Math.floor(Math.random() * types.length)];
-        const puzzle = this.puzzles[type][Math.floor(Math.random() * this.puzzles[type].length)];
-        this.currentPuzzle = { type, ...puzzle };
-        this.startTime = Date.now();
-        document.getElementById('puzzleOutput').innerHTML = `<p>${puzzle.question}</p>`;
-        document.getElementById('answerInput').value = '';
-    }
-
-    checkAnswer() {
-        if (!this.currentPuzzle) return;
-        const answer = document.getElementById('answerInput').value.toLowerCase().trim();
-        const timeTaken = (Date.now() - this.startTime) / 1000; // seconds
-        const speedScore = Math.max(0, 100 - timeTaken * 2); // Faster = better
-
-        if (answer === this.currentPuzzle.answer) {
-            this.scores[this.currentPuzzle.type] = Math.min(100, this.scores[this.currentPuzzle.type] + 20);
-            this.scores.speed = (this.scores.speed + speedScore) / 2;
-            this.history.push({ ...this.currentPuzzle, timeTaken, correct: true, timestamp: Date.now() });
-            document.getElementById('puzzleOutput').innerHTML += `<p>Correct! Time: ${timeTaken.toFixed(2)}s</p>`;
-        } else {
-            this.history.push({ ...this.currentPuzzle, timeTaken, correct: false, timestamp: Date.now() });
-            document.getElementById('puzzleOutput').innerHTML += `<p>Wrong! Answer: ${this.currentPuzzle.answer}</p>`;
+    addNode(title, level, parent, color) {
+        if (!title) {
+            alert('Please enter a node title.');
+            return;
         }
-
-        this.saveStats();
+        const node = { title, level: parseInt(level), parent, color };
+        this.nodes.push(node);
+        this.saveMindMap();
         this.updateUI();
-        this.currentPuzzle = null;
     }
 
-    saveStats() {
-        localStorage.setItem('mindosScores', JSON.stringify(this.scores));
-        localStorage.setItem('mindosHistory', JSON.stringify(this.history));
+    saveMindMap() {
+        localStorage.setItem('mindMap', JSON.stringify(this.nodes));
     }
 
-    loadStats() {
+    loadMindMap() {
+        this.updateUI();
+    }
+
+    clearMindMap() {
+        this.nodes = [];
+        this.saveMindMap();
         this.updateUI();
     }
 
     updateUI() {
-        const avgScore = Object.values(this.scores).reduce((a, b) => a + b, 0) / 4;
-        document.getElementById('cognitiveScore').textContent = `Score: ${avgScore.toFixed(2)}/100`;
-        const strengths = Object.entries(this.scores).sort((a, b) => b[1] - a[1])[0][0];
-        document.getElementById('strengths').textContent = `Strength: ${strengths.charAt(0).toUpperCase() + strengths.slice(1)}`;
+        const output = document.getElementById('mindMapOutput');
+        output.innerHTML = this.buildMindMapHTML();
 
-        this.updateChart();
+        const totalNodes = this.nodes.length;
+        const depthLevel = this.nodes.length ? Math.max(...this.nodes.map(n => n.level)) : 0;
+        document.getElementById('totalNodes').textContent = totalNodes;
+        document.getElementById('depthLevel').textContent = depthLevel;
     }
 
-    updateChart() {
-        this.chart.data.datasets[0].data = [this.scores.math, this.scores.logic, this.scores.memory, this.scores.speed];
-        this.chart.update();
-    }
+    buildMindMapHTML() {
+        const levels = {};
+        this.nodes.forEach(node => {
+            if (!levels[node.level]) levels[node.level] = [];
+            levels[node.level].push(node);
+        });
 
-    getWeaknesses() {
-        const weakest = Object.entries(this.scores).sort((a, b) => a[1] - b[1])[0];
-        return weakest[1] < 50 ? weakest[0].charAt(0).toUpperCase() + weakest[0].slice(1) : 'Balanced';
+        let html = '<ul>';
+        for (let level = 1; level <= Math.max(...Object.keys(levels).map(Number)); level++) {
+            if (levels[level]) {
+                levels[level].forEach(node => {
+                    const indent = (node.level - 1) * 20;
+                    html += `<li style="margin-left: ${indent}px; color: ${node.color};">${node.title} ${node.parent ? `(Parent: ${node.parent})` : ''}</li>`;
+                });
+            }
+        }
+        html += '</ul>';
+        return html;
     }
 }
 
 const mindos = new Mindos();
 
-function generatePuzzle() {
-    mindos.generatePuzzle();
+function addNode() {
+    const title = document.getElementById('nodeTitle').value;
+    const level = document.getElementById('nodeLevel').value;
+    const parent = document.getElementById('nodeParent').value;
+    const color = document.getElementById('nodeColor').value;
+    mindos.addNode(title, level, parent, color);
 }
 
-function checkAnswer() {
-    mindos.checkAnswer();
+function clearMindMap() {
+    mindos.clearMindMap();
 }
