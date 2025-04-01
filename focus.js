@@ -5,16 +5,20 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 class FocusCore {
     constructor() {
         this.timer = null;
-        this.timeLeft = 1500; // 25 minutes
+        this.timeLeft = 1500;
+        this.initialTime = 1500;
+        this.breakTime = 300;
         this.cycles = 0;
+        this.isPaused = false;
+        this.isBreak = false;
         this.sessions = JSON.parse(localStorage.getItem('focusSessions')) || [];
         this.chart = new Chart(document.getElementById('focusChart'), {
             type: 'line',
             data: {
                 labels: [],
                 datasets: [
-                    { label: 'Focus Time (min)', data: [], borderColor: '#00ffcc', fill: false },
-                    { label: 'Efficiency (%)', data: [], borderColor: '#e5e5e5', fill: false }
+                    { label: 'Focus Time (min)', data: [], borderColor: '#FF6F61', fill: false },
+                    { label: 'Efficiency (%)', data: [], borderColor: '#FFFFFF', fill: false }
                 ]
             },
             options: { scales: { y: { beginAtZero: true } } }
@@ -23,37 +27,67 @@ class FocusCore {
     }
 
     startTimer() {
-        clearInterval(this.timer);
-        this.timeLeft = 1500;
+        if (this.timer) return;
+        this.initialTime = parseInt(document.getElementById('cycleDuration').value);
+        this.breakTime = parseInt(document.getElementById('breakDuration').value);
+        this.timeLeft = this.isBreak ? this.breakTime : this.initialTime;
         const startTime = Date.now();
         this.updateTimerDisplay();
 
         this.timer = setInterval(() => {
-            this.timeLeft--;
-            this.updateTimerDisplay();
-            this.updateChart();
+            if (!this.isPaused) {
+                this.timeLeft--;
+                this.updateTimerDisplay();
+                this.updateChart();
 
-            if (this.timeLeft <= 0) {
-                clearInterval(this.timer);
-                this.cycles++;
-                const session = {
-                    duration: 25,
-                    completed: true,
-                    timestamp: startTime,
-                    efficiency: this.calculateEfficiency()
-                };
-                this.sessions.push(session);
-                this.saveSessions();
-                document.getElementById('timerOutput').textContent = "Cycle Complete!";
-                this.updateMetrics();
+                if (this.timeLeft <= 0) {
+                    this.isBreak = !this.isBreak;
+                    this.timeLeft = this.isBreak ? this.breakTime : this.initialTime;
+                    if (!this.isBreak) {
+                        this.cycles++;
+                        const taskName = document.getElementById('taskName').value || `Session ${this.cycles}`;
+                        const session = {
+                            task: taskName,
+                            duration: this.initialTime / 60,
+                            completed: true,
+                            timestamp: startTime,
+                            efficiency: this.calculateEfficiency()
+                        };
+                        this.sessions.push(session);
+                        this.saveSessions();
+                        this.updateMetrics();
+                    }
+                    document.getElementById('timerOutput').textContent = this.isBreak ? "Break Time!" : "Cycle Complete!";
+                }
             }
         }, 1000);
+    }
+
+    pauseTimer() {
+        this.isPaused = !this.isPaused;
+        document.getElementById('timerOutput').textContent = this.isPaused ? "Paused" : this.updateTimerDisplay();
+    }
+
+    resetTimer() {
+        clearInterval(this.timer);
+        this.timer = null;
+        this.timeLeft = this.initialTime;
+        this.isPaused = false;
+        this.isBreak = false;
+        this.updateTimerDisplay();
+    }
+
+    clearSessions() {
+        this.sessions = [];
+        this.cycles = 0;
+        this.saveSessions();
+        this.updateUI();
     }
 
     updateTimerDisplay() {
         const minutes = Math.floor(this.timeLeft / 60);
         const seconds = this.timeLeft % 60;
-        document.getElementById('timerOutput').textContent = `Cycle: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+        document.getElementById('timerOutput').textContent = `${this.isBreak ? 'Break' : 'Cycle'}: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
     }
 
     calculateEfficiency() {
@@ -82,6 +116,8 @@ class FocusCore {
     updateMetrics() {
         const efficiency = this.calculateEfficiency();
         document.getElementById('focusEfficiency').textContent = `Efficiency: ${efficiency.toFixed(2)}%`;
+        document.getElementById('streak').textContent = `Streak: ${this.getStreak()}`;
+        document.getElementById('totalSessions').textContent = `${this.sessions.length}`;
     }
 
     getStreak() {
@@ -94,6 +130,11 @@ class FocusCore {
         }
         return streak;
     }
+
+    updateUI() {
+        this.updateChart();
+        this.updateMetrics();
+    }
 }
 
 const focus = new FocusCore();
@@ -101,3 +142,15 @@ const focus = new FocusCore();
 function startTimer() {
     focus.startTimer();
 }
+
+function pauseTimer() {
+    focus.pauseTimer();
+}
+
+function resetTimer() {
+    focus.resetTimer();
+}
+
+function clearSessions() {
+    focus.clearSessions();
+            }
