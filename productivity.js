@@ -10,8 +10,8 @@ class ProductivityDash {
             data: {
                 labels: [],
                 datasets: [
-                    { label: 'Task Duration (min)', data: [], backgroundColor: '#00ffcc' },
-                    { label: 'Priority Weight', data: [], backgroundColor: '#e5e5e5' }
+                    { label: 'Task Duration (min)', data: [], backgroundColor: '#22C55E' },
+                    { label: 'Priority Weight', data: [], backgroundColor: '#FFFFFF' }
                 ]
             },
             options: { scales: { y: { beginAtZero: true } } }
@@ -19,12 +19,15 @@ class ProductivityDash {
         this.loadPlans();
     }
 
-    generatePlan(hours, tasks, priorityTask) {
-        if (hours < 1 || hours > 24 || tasks < 1 || tasks > 10 || !priorityTask) return;
+    generatePlan(hours, tasks, priorityTask, priorityLevel, timePreference) {
+        if (hours < 1 || hours > 24 || tasks < 1 || tasks > 10 || !priorityTask) {
+            alert('Invalid input. Please check your values.');
+            return;
+        }
 
         const totalMinutes = hours * 60;
         const plan = [];
-        const priorityWeight = 1.5;
+        const priorityWeight = parseInt(priorityLevel);
         const baseTime = Math.floor(totalMinutes / (tasks + priorityWeight - 1));
         let remainingTime = totalMinutes;
 
@@ -43,15 +46,23 @@ class ProductivityDash {
         }
 
         // Schedule with breaks
-        const schedule = this.createSchedule(plan);
+        const schedule = this.createSchedule(plan, timePreference);
         this.plans.push({ date: new Date().toISOString(), schedule });
         this.savePlans();
         this.updateUI(schedule);
     }
 
-    createSchedule(plan) {
+    createSchedule(plan, timePreference) {
+        let startHour;
+        switch (timePreference) {
+            case 'morning': startHour = 9; break;
+            case 'afternoon': startHour = 13; break;
+            case 'evening': startHour = 18; break;
+            default: startHour = 9;
+        }
+
         let currentTime = new Date();
-        currentTime.setHours(9, 0, 0, 0);
+        currentTime.setHours(startHour, 0, 0, 0);
         return plan.map((p, i) => {
             const start = currentTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             currentTime.setMinutes(currentTime.getMinutes() + p.duration);
@@ -67,6 +78,12 @@ class ProductivityDash {
 
     loadPlans() {
         if (this.plans.length) this.updateUI(this.plans[this.plans.length - 1].schedule);
+    }
+
+    clearPlan() {
+        this.plans = [];
+        this.savePlans();
+        this.updateUI([]);
     }
 
     updateUI(schedule) {
@@ -101,6 +118,7 @@ class ProductivityDash {
         const total = schedule.length;
         const efficiency = total ? (completed / total) * 100 : 0;
         document.getElementById('taskEfficiency').textContent = `Efficiency: ${efficiency.toFixed(2)}%`;
+        document.getElementById('completionRate').textContent = `Rate: ${efficiency.toFixed(2)}%`;
     }
 }
 
@@ -110,5 +128,11 @@ function generatePlan() {
     const hours = parseInt(document.getElementById('hoursInput').value) || 1;
     const tasks = parseInt(document.getElementById('tasksInput').value) || 1;
     const priority = document.getElementById('priorityInput').value || "Main Task";
-    dash.generatePlan(hours, tasks, priority);
-    }
+    const priorityLevel = document.getElementById('priorityLevel').value;
+    const timePreference = document.getElementById('timePreference').value;
+    dash.generatePlan(hours, tasks, priority, priorityLevel, timePreference);
+}
+
+function clearPlan() {
+    dash.clearPlan();
+            }
