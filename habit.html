@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="habit-bg">
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
@@ -28,23 +28,36 @@
         <header>
             <div class="header-content">
                 <h1>Habit Builder</h1>
-                <p>Daily Challenges by SystemInternational</p>
+                <p>Build Lasting Habits</p>
             </div>
         </header>
 
         <section class="tool-section">
-            <div class="tool">
-                <h3>Your Daily Habits</h3>
-                <button onclick="generateHabits()">New Habits</button>
+            <div class="tool habit-tool">
+                <h3>Create Habits</h3>
+                <input type="text" id="habitName" placeholder="Habit Name">
+                <select id="habitFrequency">
+                    <option value="daily">Daily</option>
+                    <option value="weekly">Weekly</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+                <input type="number" id="habitGoal" placeholder="Goal (e.g., 5 times)">
+                <select id="reminderTime">
+                    <option value="morning">Morning (8 AM)</option>
+                    <option value="afternoon">Afternoon (2 PM)</option>
+                    <option value="evening">Evening (8 PM)</option>
+                </select>
+                <button onclick="addHabit()">Add Habit</button>
+                <button onclick="clearHabits()">Clear Habits</button>
                 <div id="habitList"></div>
                 <canvas id="habitChart"></canvas>
             </div>
             <div class="metrics">
+                <h4>Habit Streak</h4>
+                <p id="habitStreak">0 Days</p>
                 <h4>Completion Rate</h4>
-                <p id="completionRate">Rate: 0%</p>
+                <p id="completionRate">0%</p>
             </div>
-            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
-            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
         </section>
 
         <footer>
