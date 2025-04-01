@@ -6,9 +6,8 @@
     <title>Reality Check | FutureFix Toolkit</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="reality-bg">
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
@@ -28,27 +27,32 @@
         <header>
             <div class="header-content">
                 <h1>Reality Check</h1>
-                <p>Life Analysis by SystemInternational</p>
+                <p>Plan Your Future</p>
             </div>
         </header>
 
         <section class="tool-section">
-            <div class="tool">
-                <h3>Your Profile</h3>
-                <input type="number" id="salaryInput" placeholder="Annual Salary ($)">
-                <input type="text" id="skillsInput" placeholder="Skills (comma-separated)">
-                <input type="number" id="ageInput" placeholder="Age">
-                <input type="number" id="fitnessInput" placeholder="Fitness Score (1-10)">
-                <button onclick="analyzeReality()">Analyze</button>
-                <div id="realityOutput"></div>
-                <canvas id="realityChart"></canvas>
+            <div class="tool reality-tool">
+                <h3>Financial Reality Check</h3>
+                <input type="number" id="age" placeholder="Your Age">
+                <input type="number" id="income" placeholder="Monthly Income ($)">
+                <input type="number" id="expenses" placeholder="Monthly Expenses ($)">
+                <input type="number" id="savings" placeholder="Current Savings ($)">
+                <select id="riskTolerance">
+                    <option value="low">Low Risk</option>
+                    <option value="medium">Medium Risk</option>
+                    <option value="high">High Risk</option>
+                </select>
+                <button onclick="generateAdvice()">Get Advice</button>
+                <button onclick="clearAdvice()">Clear Advice</button>
+                <div id="adviceOutput"></div>
             </div>
             <div class="metrics">
-                <h4>AI Impact Score</h4>
-                <p id="aiImpact">Score: N/A</p>
+                <h4>Net Worth</h4>
+                <p id="netWorth">$0</p>
+                <h4>Retirement Readiness</h4>
+                <p id="retirementReadiness">N/A</p>
             </div>
-            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
-            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
         </section>
 
         <footer>
