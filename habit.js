@@ -5,66 +5,64 @@ document.querySelector('.menu-toggle').addEventListener('click', () => {
 class HabitBuilder {
     constructor() {
         this.habits = JSON.parse(localStorage.getItem('habits')) || [];
-        this.history = JSON.parse(localStorage.getItem('habitHistory')) || {};
         this.chart = new Chart(document.getElementById('habitChart'), {
-            type: 'bar',
+            type: 'line',
             data: {
                 labels: [],
-                datasets: [
-                    { label: 'Completion (%)', data: [], backgroundColor: '#00ffcc' },
-                    { label: 'Difficulty', data: [], backgroundColor: '#e5e5e5' }
-                ]
+                datasets: [{
+                    label: 'Habit Completion (%)',
+                    data: [],
+                    borderColor: '#F97316',
+                    fill: false
+                }]
             },
             options: { scales: { y: { beginAtZero: true, max: 100 } } }
         });
-        this.habitPool = [
-            { name: "Drink 1L of water", difficulty: 1 }, { name: "Read 20 pages", difficulty: 3 },
-            { name: "Run 5km", difficulty: 5 }, { name: "Meditate for 10 minutes", difficulty: 2 },
-            { name: "Write 500 words", difficulty: 4 }, { name: "Do 20 push-ups", difficulty: 3 },
-            { name: "Learn a new skill (30 min)", difficulty: 5 }, { name: "Call a friend", difficulty: 1 },
-            { name: "Organize your workspace", difficulty: 2 }, { name: "No social media for 2 hours", difficulty: 4 }
-        ];
         this.loadHabits();
     }
 
-    generateHabits() {
-        this.habits = [];
-        const today = new Date().toDateString();
-        if (this.history[today]) return this.loadHabits(); // One set per day
-
-        for (let i = 0; i < 5; i++) {
-            const habit = this.habitPool[Math.floor(Math.random() * this.habitPool.length)];
-            this.habits.push({ ...habit, completed: false, streak: 0, id: Date.now() + i });
+    addHabit(name, frequency, goal, reminderTime) {
+        if (!name || goal <= 0) {
+            alert('Invalid input. Please check your values.');
+            return;
         }
-        this.history[today] = this.habits;
+        const habit = {
+            name,
+            frequency,
+            goal: parseInt(goal),
+            reminderTime,
+            progress: 0,
+            streak: 0,
+            history: []
+        };
+        this.habits.push(habit);
+        this.saveHabits();
+        this.updateUI();
+    }
+
+    saveHabits() {
+        localStorage.setItem('habits', JSON.stringify(this.habits));
+    }
+
+    loadHabits() {
+        this.updateUI();
+    }
+
+    clearHabits() {
+        this.habits = [];
         this.saveHabits();
         this.updateUI();
     }
 
     toggleHabit(index) {
-        this.habits[index].completed = !this.habits[index].completed;
-        this.updateStreak(index);
-        this.saveHabits();
-        this.updateUI();
-    }
-
-    updateStreak(index) {
         const habit = this.habits[index];
-        const today = new Date().toDateString();
-        const yesterday = new Date(Date.now() - 86400000).toDateString();
-        const prevHabits = this.history[yesterday] || [];
-        const prevHabit = prevHabits.find(h => h.name === habit.name && h.completed);
-        habit.streak = prevHabit ? prevHabit.streak + 1 : habit.completed ? 1 : 0;
-    }
-
-    saveHabits() {
-        localStorage.setItem('habits', JSON.stringify(this.habits));
-        localStorage.setItem('habitHistory', JSON.stringify(this.history));
-    }
-
-    loadHabits() {
-        const today = new Date().toDateString();
-        this.habits = this.history[today] || this.habits;
+        habit.progress++;
+        if (habit.progress >= habit.goal) {
+            habit.streak++;
+            habit.progress = 0;
+        }
+        habit.history.push({ date: new Date().toISOString(), completed: habit.progress >= habit.goal });
+        this.saveHabits();
         this.updateUI();
     }
 
@@ -72,37 +70,38 @@ class HabitBuilder {
         const list = document.getElementById('habitList');
         list.innerHTML = this.habits.map((h, i) => `
             <p>
-                <input type="checkbox" id="habit${i}" ${h.completed ? 'checked' : ''} onchange="builder.toggleHabit(${i})">
-                <label for="habit${i}">${h.name} (Streak: ${h.streak})</label>
+                <input type="checkbox" id="habit${i}" ${h.progress >= h.goal ? 'checked' : ''} onchange="builder.toggleHabit(${i})">
+                <label for="habit${i}">${h.name} (${h.frequency}, Goal: ${h.goal}, Progress: ${h.progress}/${h.goal}) - Reminder: ${h.reminderTime}</label>
             </p>
         `).join('');
+
+        const longestStreak = this.habits.length ? Math.max(...this.habits.map(h => h.streak)) : 0;
+        const completionRate = this.habits.length ? (this.habits.reduce((sum, h) => sum + (h.progress / h.goal), 0) / this.habits.length) * 100 : 0;
+
+        document.getElementById('habitStreak').textContent = `${longestStreak} Days`;
+        document.getElementById('completionRate').textContent = `${completionRate.toFixed(2)}%`;
+
         this.updateChart();
-        this.updateMetrics();
     }
 
     updateChart() {
-        const completion = this.habits.map(h => h.completed ? 100 : 0);
-        this.chart.data.labels = this.habits.map(h => h.name);
-        this.chart.data.datasets[0].data = completion;
-        this.chart.data.datasets[1].data = this.habits.map(h => h.difficulty * 20);
+        const history = this.habits.flatMap(h => h.history.map(hh => ({ date: hh.date, completed: hh.completed })));
+        this.chart.data.labels = history.map(h => new Date(h.date).toLocaleDateString());
+        this.chart.data.datasets[0].data = history.map(h => h.completed ? 100 : 0);
         this.chart.update();
-    }
-
-    updateMetrics() {
-        const completed = this.habits.filter(h => h.completed).length;
-        const total = this.habits.length;
-        const rate = total ? (completed / total) * 100 : 0;
-        document.getElementById('completionRate').textContent = `Rate: ${rate.toFixed(2)}%`;
-    }
-
-    getRewards() {
-        const totalDifficulty = this.habits.filter(h => h.completed).reduce((a, b) => a + b.difficulty, 0);
-        return totalDifficulty >= 15 ? 'Premium Badge' : totalDifficulty >= 10 ? 'Silver Badge' : 'Keep Going!';
     }
 }
 
 const builder = new HabitBuilder();
 
-function generateHabits() {
-    builder.generateHabits();
-                                         }
+function addHabit() {
+    const name = document.getElementById('habitName').value;
+    const frequency = document.getElementById('habitFrequency').value;
+    const goal = parseInt(document.getElementById('habitGoal').value) || 1;
+    const reminderTime = document.getElementById('reminderTime').value;
+    builder.addHabit(name, frequency, goal, reminderTime);
+}
+
+function clearHabits() {
+    builder.clearHabits();
+}
