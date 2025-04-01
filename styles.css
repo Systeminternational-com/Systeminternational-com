@@ -6,11 +6,40 @@
 
 body {
     font-family: 'SF Pro Display', sans-serif;
-    background: #000000;
-    color: #e5e5e5;
+    background: #0A0A0F;
+    color: #FFFFFF;
     overflow-x: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Unique Backgrounds for Each Tool */
+.attendance-bg {
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+}
+
+.focus-bg {
+    background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+}
+
+.productivity-bg {
+    background: linear-gradient(135deg, #15803D 0%, #22C55E 100%);
+}
+
+.expense-bg {
+    background: linear-gradient(135deg, #B91C1C 0%, #F87171 100%);
+}
+
+.habit-bg {
+    background: linear-gradient(135deg, #C2410C 0%, #F97316 100%);
+}
+
+.mindos-bg {
+    background: linear-gradient(135deg, #4B0082 0%, #8B5CF6 100%);
+}
+
+.reality-bg {
+    background: linear-gradient(135deg, #0F766E 0%, #14B8A6 100%);
 }
 
 .menu-toggle {
@@ -21,8 +50,8 @@ body {
     top: 15px;
     left: 15px;
     z-index: 1001;
-    color: #e5e5e5;
-    background: rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     backdrop-filter: blur(12px);
     transition: transform 0.2s ease, background 0.2s ease;
@@ -30,7 +59,7 @@ body {
 
 .menu-toggle:hover {
     transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.2);
 }
 
 .sidebar {
@@ -52,7 +81,7 @@ body {
 }
 
 .sidebar h2 {
-    color: #00ffcc;
+    color: #00FFCC;
     font-size: 2em;
     margin-bottom: 30px;
     font-weight: 700;
@@ -64,7 +93,7 @@ body {
 }
 
 .sidebar a {
-    color: #e5e5e5;
+    color: #FFFFFF;
     display: block;
     padding: 15px;
     border-radius: 12px;
@@ -75,7 +104,7 @@ body {
 }
 
 .sidebar a:hover {
-    background: #00ffcc;
+    background: #00FFCC;
     color: #000000;
     transform: translateX(5px);
 }
@@ -87,35 +116,41 @@ main {
 header {
     padding: 80px 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.85);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: linear-gradient(180deg, #0A0A0F 0%, #1A1A2E 100%);
 }
 
 h1 {
     font-size: 3.5em;
     font-weight: 700;
-    letter-spacing: 4px;
-    color: #e5e5e5;
+    letter-spacing: 2px;
+    color: #FFFFFF;
     text-shadow: 0 0 20px rgba(0, 255, 204, 0.4);
     animation: fadeIn 1s ease-in-out;
 }
 
-p {
-    font-size: 1.2em;
-    color: rgba(229, 229, 229, 0.8);
+header p {
+    font-size: 1.5em;
+    color: #A0A0A0;
+    margin-top: 10px;
+}
+
+#intro {
+    position: relative;
+    text-align: center;
 }
 
 .intro-overlay {
     position: relative;
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 100%;
+    margin: 0 auto;
 }
 
 .intro-image {
     width: 100%;
+    height: 500px;
+    object-fit: cover;
+    filter: brightness(0.5);
     border-radius: 20px;
-    filter: brightness(0.6);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
 }
 
 .intro-text {
@@ -124,17 +159,59 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    background: rgba(0, 0, 0, 0.75);
     padding: 30px;
-    border-radius: 20px;
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .intro-text h2 {
-    color: #00ffcc;
     font-size: 2.5em;
     font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 20px;
+}
+
+.intro-text p {
+    font-size: 1.2em;
+    color: #A0A0A0;
+    margin-bottom: 30px;
+}
+
+.email-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.email-signup input {
+    padding: 15px;
+    width: 300px;
+    border: none;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-size: 1em;
+    backdrop-filter: blur(8px);
+}
+
+.email-signup button {
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background: #FFFFFF;
+    color: #000000;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.email-signup button:hover {
+    background: #E0E0E0;
+}
+
+.social-proof {
+    margin-top: 20px;
+    font-size: 1em;
+    color: #A0A0A0;
 }
 
 .about {
@@ -144,9 +221,14 @@ p {
 }
 
 .about h3 {
-    color: #e5e5e5;
+    color: #FFFFFF;
     font-size: 1.8em;
     margin-bottom: 20px;
+}
+
+.about p {
+    color: #A0A0A0;
+    font-size: 1.2em;
 }
 
 .tool-section {
@@ -164,37 +246,70 @@ p {
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+.attendance-tool {
+    background: linear-gradient(135deg, rgba(30, 58, 138, 0.8), rgba(59, 130, 246, 0.8));
+}
+
+.focus-tool {
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.8), rgba(167, 139, 250, 0.8));
+}
+
+.productivity-tool {
+    background: linear-gradient(135deg, rgba(21, 128, 61, 0.8), rgba(34, 197, 94, 0.8));
+}
+
+.expense-tool {
+    background: linear-gradient(135deg, rgba(185, 28, 28, 0.8), rgba(248, 113, 113, 0.8));
+}
+
+.habit-tool {
+    background: linear-gradient(135deg, rgba(194, 65, 12, 0.8), rgba(249, 115, 22, 0.8));
+}
+
+.mindos-tool {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.8), rgba(139, 92, 246, 0.8));
+}
+
+.reality-tool {
+    background: linear-gradient(135deg, rgba(15, 118, 110, 0.8), rgba(20, 184, 166, 0.8));
+}
+
 .tool:hover {
     transform: translateY(-8px);
 }
 
 .tool h3 {
-    color: #00ffcc;
+    color: #FFFFFF;
     font-size: 1.8em;
     margin-bottom: 20px;
 }
 
-.tool input, .tool button {
+.tool input, .tool select, .tool button {
     padding: 15px;
     margin: 10px 0;
     border: none;
     border-radius: 12px;
     background: rgba(255, 255, 255, 0.15);
-    color: #e5e5e5;
+    color: #FFFFFF;
     width: 100%;
     font-size: 1.1em;
     transition: all 0.2s ease;
     backdrop-filter: blur(8px);
 }
 
+.tool select {
+    appearance: none;
+    background: rgba(255, 255, 255, 0.15) url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+}
+
 .tool button {
-    background: #00ffcc;
+    background: #00FFCC;
     color: #000000;
     font-weight: 700;
 }
 
 .tool button:hover {
-    background: #00e6b8;
+    background: #00E6B8;
     transform: scale(1.03);
 }
 
@@ -212,44 +327,28 @@ canvas {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
     backdrop-filter: blur(12px);
-    color: #e5e5e5;
+    color: #FFFFFF;
 }
 
 .metrics h4 {
-    color: #00ffcc;
+    color: #00FFCC;
     font-size: 1.2em;
     margin-bottom: 10px;
 }
 
-.ad-box {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 12px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.ad-box:hover {
-    transform: scale(1.02);
-}
-
-.ad-content {
-    text-align: center;
-    color: #e5e5e5;
+.metrics p {
+    color: #A0A0A0;
 }
 
 #sponsor-tools {
     padding: 60px 20px;
     text-align: center;
-    background: rgba(0, 0, 0, 0.85);
+    background: #0A0A0F;
 }
 
 .limited-offer {
     display: inline-block;
-    background: #00ffcc;
+    background: #00FFCC;
     color: #000000;
     padding: 12px 25px;
     border-radius: 25px;
@@ -281,15 +380,19 @@ canvas {
 }
 
 .sponsor-card h3 {
-    color: #00ffcc;
+    color: #00FFCC;
     font-size: 1.5em;
     margin-bottom: 15px;
+}
+
+.sponsor-card p {
+    color: #A0A0A0;
 }
 
 .sponsor-card a {
     display: inline-block;
     padding: 12px 25px;
-    background: #00ffcc;
+    background: #00FFCC;
     color: #000000;
     border-radius: 12px;
     font-weight: 700;
@@ -298,15 +401,34 @@ canvas {
 }
 
 .sponsor-card a:hover {
-    background: #00e6b8;
+    background: #00E6B8;
+}
+
+.ad-box {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.ad-box:hover {
+    transform: scale(1.02);
+}
+
+.ad-content {
+    text-align: center;
+    color: #FFFFFF;
 }
 
 footer {
     text-align: center;
     padding: 40px;
-    background: rgba(0, 0, 0, 0.95);
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    color: rgba(229, 229, 229, 0.8);
+    background: #0A0A0F;
+    color: #A0A0A0;
 }
 
 /* Mobile Responsiveness */
@@ -322,6 +444,9 @@ footer {
     }
     .sidebar {
         width: 250px;
+    }
+    .email-signup input {
+        width: 200px;
     }
 }
 
