@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="focus-bg">
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
@@ -28,23 +28,39 @@
         <header>
             <div class="header-content">
                 <h1>Focus Core</h1>
-                <p>Precision Timing by SystemInternational</p>
+                <p>Master Your Time</p>
             </div>
         </header>
 
         <section class="tool-section">
-            <div class="tool">
+            <div class="tool focus-tool">
                 <h3>Focus Timer</h3>
-                <button onclick="startTimer()">Start 25-Min Cycle</button>
+                <select id="cycleDuration">
+                    <option value="1500">25 Minutes</option>
+                    <option value="3000">50 Minutes</option>
+                    <option value="900">15 Minutes</option>
+                </select>
+                <select id="breakDuration">
+                    <option value="300">5 Minutes Break</option>
+                    <option value="600">10 Minutes Break</option>
+                    <option value="0">No Break</option>
+                </select>
+                <input type="text" id="taskName" placeholder="Task Name (Optional)">
+                <button onclick="startTimer()">Start Cycle</button>
+                <button onclick="pauseTimer()">Pause</button>
+                <button onclick="resetTimer()">Reset</button>
+                <button onclick="clearSessions()">Clear Sessions</button>
                 <p id="timerOutput">Cycle: 25:00</p>
                 <canvas id="focusChart"></canvas>
             </div>
             <div class="metrics">
                 <h4>Focus Efficiency</h4>
                 <p id="focusEfficiency">Efficiency: 0%</p>
+                <h4>Daily Streak</h4>
+                <p id="streak">Streak: 0</p>
+                <h4>Total Sessions</h4>
+                <p id="totalSessions">0</p>
             </div>
-            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
-            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
         </section>
 
         <footer>
