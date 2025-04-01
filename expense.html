@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body>
+<body class="expense-bg">
     <div class="menu-toggle">☰</div>
     <nav class="sidebar">
         <h2>Toolkit</h2>
@@ -28,25 +28,38 @@
         <header>
             <div class="header-content">
                 <h1>Expense Tracker</h1>
-                <p>Financial Insights by SystemInternational</p>
+                <p>Control Your Finances</p>
             </div>
         </header>
 
         <section class="tool-section">
-            <div class="tool">
+            <div class="tool expense-tool">
                 <h3>Track Expenses</h3>
-                <input type="number" id="expenseInput" placeholder="Enter Amount">
-                <input type="text" id="expenseDesc" placeholder="Description">
-                <button onclick="addExpense()">Log</button>
-                <p id="expenseTotal">Total: $0</p>
+                <input type="text" id="expenseName" placeholder="Expense Name">
+                <input type="number" id="expenseAmount" placeholder="Amount ($)">
+                <select id="expenseCategory">
+                    <option value="Food">Food</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Bills">Bills</option>
+                    <option value="Other">Other</option>
+                </select>
+                <input type="date" id="expenseDate">
+                <input type="number" id="monthlyBudget" placeholder="Monthly Budget ($)">
+                <button onclick="addExpense()">Add Expense</button>
+                <button onclick="exportExpenses()">Export Expenses</button>
+                <button onclick="clearExpenses()">Clear Expenses</button>
+                <div id="expenseList"></div>
                 <canvas id="expenseChart"></canvas>
             </div>
             <div class="metrics">
-                <h4>Spending Trend</h4>
-                <p id="spendTrend">Trend: N/A</p>
+                <h4>Total Spent</h4>
+                <p id="totalSpent">$0</p>
+                <h4>Budget Status</h4>
+                <p id="budgetStatus">N/A</p>
+                <h4>Top Category</h4>
+                <p id="topCategory">N/A</p>
             </div>
-            <div class="ad-box"><div class="ad-content">Ad Space 1</div></div>
-            <div class="ad-box"><div class="ad-content">Ad Space 2</div></div>
         </section>
 
         <footer>
