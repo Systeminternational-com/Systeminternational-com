@@ -90,4 +90,4 @@ function generateAdvice() {
 
 function clearAdvice() {
     reality.clearAdvice();
-                               }
+}
