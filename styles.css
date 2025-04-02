@@ -13,7 +13,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Unique Backgrounds for Each Tool */
+/* Unique Backgrounds for Each Page */
+body {
+    background: linear-gradient(135deg, #0A0A0F 0%, #1A1A2E 100%);
+}
+
 .attendance-bg {
     background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
 }
@@ -459,4 +463,4 @@ footer {
 @keyframes offerPulse {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.03); }
-    }
+}
