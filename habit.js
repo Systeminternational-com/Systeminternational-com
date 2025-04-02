@@ -104,4 +104,4 @@ function addHabit() {
 
 function clearHabits() {
     builder.clearHabits();
-}
+        }
