@@ -135,4 +135,4 @@ function generatePlan() {
 
 function clearPlan() {
     dash.clearPlan();
-            }
+    }
