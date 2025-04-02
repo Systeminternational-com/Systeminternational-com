@@ -110,4 +110,4 @@ function exportExpenses() {
 
 function clearExpenses() {
     tracker.clearExpenses();
-}
+    }
